@@ -13,7 +13,7 @@ import { protect, admin } from "../middleware/authMiddleware.js";
 const router = express.Router();
 
 
-//Admin 1. Route to display all users 
+//ADMIN 1. Route to display all users 
 router.route("/")
   .post(registerUser)
   .get(protect, admin, getUsers);
@@ -29,7 +29,7 @@ router.route("/profile")
   .get(protect, getsUserProfile)
   .put(protect, updatesUserProfile);
 
-//Admin 2. Route to display a single user
+//ADMIN 2. Route to display a single user
 router.route("/:id")
   .get(protect, admin, getUserById)
   .delete(protect, admin, deleteUser)
