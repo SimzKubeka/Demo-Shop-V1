@@ -55,7 +55,6 @@ const OrderPage = () => {
     await payOrder({ OrderId, details:{payer:{}}})
     refetch()
     toast.success('Order Paid')
-    console.log(OrderId)
   }
   
   function onError  (err) {
