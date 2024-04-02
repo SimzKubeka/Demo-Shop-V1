@@ -22,10 +22,10 @@ router
  .route("/myorders")
  .get(protect, getMyOrders);
 
-//ADMIN 3. Route to get order by id
+//3. Route to get order by id
 router
  .route("/:id")
- .get(protect, admin, getOrderById);
+ .get(protect, getOrderById);
 
 //4. Route to update order to paid
 router
