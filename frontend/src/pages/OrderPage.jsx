@@ -9,8 +9,8 @@ import Loader from '../components/Loader'
 import { useGetOrderDetailsQuery, useGetPaypalClientIdQuery, usePayOrderMutation } from '../slices/ordersApiSlice'
 
 const OrderPage = () => {
-  const { id: OrderId } = useParams()
-  const { data: order, refetch, error, isLoading } = useGetOrderDetailsQuery(OrderId)
+  const { id: orderId } = useParams()
+  const { data: order, refetch, error, isLoading } = useGetOrderDetailsQuery(orderId)
 
   const [ payOrder, { isLoading: isPaying } ] = usePayOrderMutation()
 
@@ -42,7 +42,7 @@ const OrderPage = () => {
   function onApprove( data, actions)  {
     return actions.order.capture().then(async function(details) {
       try {
-        await payOrder({ OrderId, details})
+        await payOrder({ orderId, details})
         refetch()
         toast.success('Order Paid')
       } catch (err) {
@@ -52,7 +52,7 @@ const OrderPage = () => {
   }
 
   async function onApproveTest() {
-    await payOrder({ OrderId, details:{payer:{}}})
+    await payOrder({ orderId, details:{payer:{}}}).unwrap()
     refetch()
     toast.success('Order Paid')
   }
@@ -148,25 +148,25 @@ const OrderPage = () => {
                 <ListGroup.Item>
                   <Row>
                     <Col>Items</Col>
-                    <Col>${order.itemsPrice}</Col>
+                    <Col>R{order.itemsPrice}</Col>
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Row>
                     <Col>Shipping</Col>
-                    <Col>${order.shippingPrice}</Col>
+                    <Col>R{order.shippingPrice}</Col>
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Row>
                     <Col>Tax</Col>
-                    <Col>${order.taxPrice}</Col>
+                    <Col>R{order.taxPrice}</Col>
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Row>
                     <Col>Total</Col>
-                    <Col>${order.totalPrice}</Col>
+                    <Col>R{order.totalPrice}</Col>
                   </Row>
                 </ListGroup.Item>
 

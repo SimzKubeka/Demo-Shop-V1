@@ -19,6 +19,7 @@ import ShippingPage from './pages/ShippingPage';
 import PaymentPage from './pages/PaymentPage';
 import ConfirmationPage from './pages/ConfirmationPage';
 import OrderPage from './pages/OrderPage';
+import ProfilePage from './pages/ProfilePage';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -34,6 +35,7 @@ const router = createBrowserRouter(
         <Route path='/payment' element={<PaymentPage />} />
         <Route path='/confirmation' element={<ConfirmationPage />} />
         <Route path='/order/:id' element={<OrderPage />} />
+        <Route path='/profile' element={<ProfilePage />} />
       </Route>
     </Route>
   )
